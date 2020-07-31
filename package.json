@@ -1,0 +1,9 @@
+{
+  "name": "com.autocore.simuui",
+  "displayName": "SimuUI",
+  "description": "UI of Simulator",
+  "version": "1.0.2",
+  "license": "MIT",
+  "dependencies": {
+  }
+}
