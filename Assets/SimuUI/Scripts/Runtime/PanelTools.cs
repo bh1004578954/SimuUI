@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Element;
+﻿
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,15 +18,6 @@ namespace Assets.Scripts.SimuUI
             }
         }
 
-        string[] menuNames = new string[]
-        {
-        "Reset",
-        "Elements",
-        "Set Car Pose",
-        "Settings",
-        "Help",
-        "Exit"
-        };
         public UnityAction[] menuActions;
 
         public List<string[]> menusNames = new List<string[]>
@@ -55,15 +47,7 @@ namespace Assets.Scripts.SimuUI
         }
         void Start()
         {
-            menuActions = new UnityAction[]
-            {
-            null,
-            null,
-            ()=>{ ElementsManager.Instance.SetEditMode(ElementsManager.EditMode.SetCarPose);},
-            ()=>{ PanelSettings.Instance.SwitchPanelActive(); },
-            ()=>{ Application.OpenURL("https://github.com/autocore-ai/autocore_pcu_doc/blob/master/docs/Simulation_autoware.md"); },
-            ()=>{  PanelExit.Instance.SwitchPanelActive();},
-            };
+            
             menusActions = new List<UnityAction[]>
             {
                 new UnityAction[]{AllReset,CarReset },
@@ -105,29 +89,29 @@ namespace Assets.Scripts.SimuUI
         #region tools
         void AllReset()
         {
-            MapManager.Instance.Mapinit();
+            //MapManager.Instance.Mapinit();
         }
         void CarReset()
         {
-            MapManager.Instance.ResetCar();
-            TestDataManager.Instance.WriteTestData("Reset ego vehicle");
-            OverLookCamera.Instance?.OLCameraReset();
+            //MapManager.Instance.ResetCar();
+            //TestDataManager.Instance.WriteTestData("Reset ego vehicle");
+            //OverLookCamera.Instance?.OLCameraReset();
         }
         void AddCarAI()
         {
-            ElementsManager.Instance.SetEditMode(ElementsManager.EditMode.SetCarAI);
+            //ElementsManager.Instance.SetEditMode(ElementsManager.EditMode.SetCarAI);
         }
         void AddHuman()
         {
-            ElementsManager.Instance.SetEditMode(ElementsManager.EditMode.SetHuman);
+            //ElementsManager.Instance.SetEditMode(ElementsManager.EditMode.SetHuman);
         }
         void AddObstacle()
         {
-            ElementsManager.Instance.SetEditMode(ElementsManager.EditMode.SetStatic);
+            //ElementsManager.Instance.SetEditMode(ElementsManager.EditMode.SetStatic);
         }
         void RemoveAll()
         {
-            ElementsManager.Instance.RemoveAllElements();
+            //ElementsManager.Instance.RemoveAllElements();
         }
         
         #endregion

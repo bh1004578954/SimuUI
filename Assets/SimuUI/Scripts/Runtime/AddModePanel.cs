@@ -24,21 +24,21 @@ namespace Assets.Scripts.SimuUI
         }
         public void PanelInit()
         {
-            UpdateDropDownItem(Enum.GetNames(typeof(TestConfig.TestMap)));
-            inputField_modeName?.onEndEdit.RemoveAllListeners();
-            inputField_modeName?.onEndEdit.AddListener(CheckModeName);
-            button_addMode.onClick.RemoveAllListeners();
-            button_addMode?.onClick.AddListener(() =>
-            {
-                CheckModeName(inputField_modeName.text);
-                if (isNameLegal)
-                {
-                    TestDataManager.Instance.AddTestMode(inputField_modeName.text, Enum.GetNames(typeof(TestConfig.TestMap))[dropDownItem.value]);
-                    TestDataManager.Instance.WriteTestJson(true);
-                    TestConfig.isEditMode = true;
-                    SceneManager.LoadScene(TestConfig.TestMode.MapName + "_edit");
-                }
-            });
+            //UpdateDropDownItem(Enum.GetNames(typeof(TestConfig.TestMap)));
+            //inputField_modeName?.onEndEdit.RemoveAllListeners();
+            //inputField_modeName?.onEndEdit.AddListener(CheckModeName);
+            //button_addMode.onClick.RemoveAllListeners();
+            //button_addMode?.onClick.AddListener(() =>
+            //{
+            //    CheckModeName(inputField_modeName.text);
+            //    if (isNameLegal)
+            //    {
+            //        TestDataManager.Instance.AddTestMode(inputField_modeName.text, Enum.GetNames(typeof(TestConfig.TestMap))[dropDownItem.value]);
+            //        TestDataManager.Instance.WriteTestJson(true);
+            //        TestConfig.isEditMode = true;
+            //        SceneManager.LoadScene(TestConfig.TestMode.MapName + "_edit");
+            //    }
+            //});
         }
         private void CheckModeName(string value)
         {
@@ -55,14 +55,14 @@ namespace Assets.Scripts.SimuUI
                 text_NameNotice.text = "Map name cannot be empty";
                 return;
             }
-            foreach (var item in TestConfig.TestModes)
-            {
-                if (item.TestModeName == value)
-                {
-                    text_NameNotice.text = "Map name cannot be repeated";
-                    return;
-                }
-            }
+            //foreach (var item in TestConfig.TestModes)
+            //{
+            //    if (item.TestModeName == value)
+            //    {
+            //        text_NameNotice.text = "Map name cannot be repeated";
+            //        return;
+            //    }
+            //}
             isNameLegal = true;
             text_NameNotice.text = string.Empty;
         }

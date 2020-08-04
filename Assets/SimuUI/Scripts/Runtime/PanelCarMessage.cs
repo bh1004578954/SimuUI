@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Element;
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +17,6 @@ namespace Assets.Scripts.SimuUI
         public Text text_speed;
         public Text text_exceptSpeed;
         public Text text_Odom;
-        private WheelDrive wd;
         public Image image_wheel;
         private Animation Anim_PanelMessage
         {
@@ -36,18 +35,16 @@ namespace Assets.Scripts.SimuUI
                 isActive = !isActive;
                 SetPanelActive(isActive);
             });
-            wd = ObjTestCar.TestCar.WD;
         }
         void update()
         {
-
-            image_wheel.rectTransform.rotation = Quaternion.Euler(0, 0, -wd.steer * 540);
-            text_Odom.text = wd.str_Odom;
-            text_brake.text = wd.brake.ToString("0.00");
-            text_throttle.text = wd.throttle.ToString("0.00");
-            text_steer.text = wd.steer.ToString("0.00");
-            text_speed.text = (ObjTestCar.TestCar.SPC.Speed).ToString("0.00") + "km/h";
-            text_exceptSpeed.text = ObjTestCar.TestCar.SPC.LinearVelocity.ToString();
+            //image_wheel.rectTransform.rotation = Quaternion.Euler(0, 0, -wd.steer * 540);
+            //text_Odom.text = wd.str_Odom;
+            //text_brake.text = wd.brake.ToString("0.00");
+            //text_throttle.text = wd.throttle.ToString("0.00");
+            //text_steer.text = wd.steer.ToString("0.00");
+            //text_speed.text = (ObjTestCar.TestCar.SPC.Speed).ToString("0.00") + "km/h";
+            //text_exceptSpeed.text = ObjTestCar.TestCar.SPC.LinearVelocity.ToString();
         }
         public override void SetPanelActive(bool value)
         {

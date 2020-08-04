@@ -3,7 +3,7 @@
  * Copyright (c) 2018 AutoCore
  */
 #endregion
-using AutoCore.Sim.Autoware.IO;
+
 using Newtonsoft.Json;
 using System;
 using System.Net;
@@ -78,11 +78,11 @@ namespace Assets.Scripts.SimuUI
         void Start()
         {
             connectStatus = ConnectStatus.None;
-            TestConfig.LoadAllData();
+            //TestConfig.LoadAllData();
             SetModeGroup();
             LoadUrl();
-            PanelURL.SetActive(!ROS_Config.ROS2);
-            btn_testConnect.onClick.AddListener(() => { TestConnect(); });
+            //PanelURL.SetActive(!ROS_Config.ROS2);
+            //btn_testConnect.onClick.AddListener(() => { TestConnect(); });
             inputField_RosMasterIP?.onEndEdit.AddListener((string value) =>
             {
                 if (Uri.TryCreate(value, UriKind.Absolute, out uriRos))
@@ -140,13 +140,13 @@ namespace Assets.Scripts.SimuUI
                 thread.Abort();
         }
 
-        public void TestConnect(SimuTestMode mode = null)
-        {
-            TestConfig.TestMode = mode;
-            isEnter = mode != null;
-            thread = new Thread(new ThreadStart(RunConnect));
-            thread.Start();
-        }
+        //public void TestConnect(SimuTestMode mode = null)
+        //{
+        //    TestConfig.TestMode = mode;
+        //    isEnter = mode != null;
+        //    thread = new Thread(new ThreadStart(RunConnect));
+        //    thread.Start();
+        //}
 
         enum ConnectStatus
         {
@@ -162,28 +162,28 @@ namespace Assets.Scripts.SimuUI
             connectStatus = ConnectStatus.Connecting;
             Task.Run(() =>
             {
-                return ROS_Node.CheckRos1Master(GetRosMasterIP(inputField_RosMasterIP.text), 11311, 2);
+                //return ROS_Node.CheckRos1Master(GetRosMasterIP(inputField_RosMasterIP.text), 11311, 2);
             }).ContinueWith(ret =>
             {
-                if (ret.Result == true)
-                {
-                    connectStatus = ConnectStatus.Success;
-                    if (isEnter)
-                    {
-                        isEnterSimu = true;
-                    }
-                }
-                else
-                {
-                    connectStatus = ConnectStatus.failed;
-                }
+                //if (ret.Result == true)
+                //{
+                //    connectStatus = ConnectStatus.Success;
+                //    if (isEnter)
+                //    {
+                //        isEnterSimu = true;
+                //    }
+                //}
+                //else
+                //{
+                //    connectStatus = ConnectStatus.failed;
+                //}
             });
         }
         public void EnterSimu(bool isEdit)
         {
-            TestConfig.isEditMode = isEdit;
-            string sceneName = TestConfig.TestMode.MapName + (isEdit ? "_edit" : "");
-            SceneManager.LoadScene(sceneName);
+            //TestConfig.isEditMode = isEdit;
+            //string sceneName = TestConfig.TestMode.MapName + (isEdit ? "_edit" : "");
+            //SceneManager.LoadScene(sceneName);
         }
 
 
@@ -193,20 +193,20 @@ namespace Assets.Scripts.SimuUI
             {
                 Destroy(groupMode.transform.GetChild(i).gameObject);
             }
-            for (int i = 0; i < TestConfig.TestModes.Count; i++)
-            {
-                SimuTestMode mode = TestConfig.TestModes[i];
-                GameObject ModeObj = Instantiate(objModeToggle, groupMode.transform);
-                ModeObj.GetComponent<ModeButton>().SetModeButton(mode.TestModeName, mode.MapName, mode.LastTime, mode);
-            }
+            //for (int i = 0; i < TestConfig.TestModes.Count; i++)
+            //{
+            //    SimuTestMode mode = TestConfig.TestModes[i];
+            //    GameObject ModeObj = Instantiate(objModeToggle, groupMode.transform);
+            //    ModeObj.GetComponent<ModeButton>().SetModeButton(mode.TestModeName, mode.MapName, mode.LastTime, mode);
+            //}
         }
 
         void LoadUrl()
         {
             try
             {
-                inputField_RosMasterIP.text = ROS_Node.Config.ros_master_uri;
-                inputField_rosIP.text = ROS_Node.Config.ros_ip;
+                //inputField_RosMasterIP.text = ROS_Node.Config.ros_master_uri;
+                //inputField_rosIP.text = ROS_Node.Config.ros_ip;
                 //ROS1_Node.Config.ros_node
             }
             catch (Exception)
@@ -218,10 +218,10 @@ namespace Assets.Scripts.SimuUI
         public const string configFile = "RosLinkConfig.json";
         void SetIPConfig()
         {
-            if (uriRos != null) ROS_Node.Config.ros_master_uri = uriRos.ToString();
-            if (iPAddressLocal != null) ROS_Node.Config.ros_ip = iPAddressLocal.ToString();
-            string content = JsonConvert.SerializeObject(ROS_Node.Config);
-            TestDataManager.Instance.WriteByLineCover(Application.streamingAssetsPath + "\\ROS_Config.json", content);
+            //if (uriRos != null) ROS_Node.Config.ros_master_uri = uriRos.ToString();
+            //if (iPAddressLocal != null) ROS_Node.Config.ros_ip = iPAddressLocal.ToString();
+            //string content = JsonConvert.SerializeObject(ROS_Node.Config);
+            //TestDataManager.Instance.WriteByLineCover(Application.streamingAssetsPath + "\\ROS_Config.json", content);
         }
         private IPAddress GetRosMasterIP(string value)
         {

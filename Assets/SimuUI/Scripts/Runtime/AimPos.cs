@@ -4,7 +4,6 @@
  */
 #endregion
 
-using Assets.Scripts.Element;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +23,6 @@ namespace Assets.Scripts.SimuUI
                     if (float.TryParse(value, out float num))
                     {
                         Value.x = num;
-                        ElementsManager.Instance.SelectedElement.GetComponent<ObjHuman>().PosList[transform.GetSiblingIndex() - 1] = Value;
                     }
                 });
             inputField_Y.onEndEdit.AddListener(
@@ -33,7 +31,6 @@ namespace Assets.Scripts.SimuUI
                     if (float.TryParse(value, out float num))
                     {
                         Value.z = num;
-                        ElementsManager.Instance.SelectedElement.GetComponent<ObjHuman>().PosList[transform.GetSiblingIndex() - 1] = Value;
                     }
                 });
         }
@@ -45,7 +42,6 @@ namespace Assets.Scripts.SimuUI
             btn_Delete.onClick.RemoveAllListeners();
             btn_Delete.onClick.AddListener(() =>
             {
-                ElementsManager.Instance.SelectedElement.GetComponent<ObjHuman>().PosList.RemoveAt(transform.GetSiblingIndex() - 1);
                 Destroy(gameObject);
             });
         }

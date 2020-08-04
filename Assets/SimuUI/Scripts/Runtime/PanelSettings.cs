@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Element;
+﻿
 using Microsoft.CodeAnalysis;
 using System;
 using System.Collections;
@@ -30,7 +30,6 @@ namespace Assets.Scripts.SimuUI
         public Slider slider_maxTorque;
         public Text text_maxSpeed;
         public Slider slider_maxSpeed;
-        public LidarOrSimNdt lidarOrSimNdt;
         void Start()
         {
             InitResolutionItem();
@@ -47,7 +46,7 @@ namespace Assets.Scripts.SimuUI
             slider_maxCameraRange?.onValueChanged.AddListener(SetMaxCameraRange);
             slider_maxSpeed?.onValueChanged.AddListener(SetMaxSpeed);
             dropdown_quality.onValueChanged.AddListener(SetQuality);
-            SetPanelActive(false); 
+            SetPanelActive(false);
             PanelInit();
         }
 
@@ -91,15 +90,18 @@ namespace Assets.Scripts.SimuUI
         public GameObject GOMaxSpd;
         public void SetSimuDriveMode(bool value)
         {
-            ObjTestCar.TestCar.WD.IsHandDrive = !value;
+            //ObjTestCar.TestCar.WD.IsHandDrive = !value;
             slider_maxSpeed.interactable = value;
         }
-        private void ToggleFollowCarRot(bool value) => OverLookCamera.Instance.SwitchRotCam(value);
+        private void ToggleFollowCarRot(bool value)
+        {
+            //OverLookCamera.Instance.SwitchRotCam(value);
+        }
 
         public void SetCameraFollowCarPos(bool value)
         {
-            if (value) OverLookCamera.Instance.OLCameraReset();
-            OverLookCamera.Instance.isFollowTargetPos = value;
+            //if (value) OverLookCamera.Instance.OLCameraReset();
+            //OverLookCamera.Instance.isFollowTargetPos = value;
             toggle_FollowCarPos.isOn = value;
         }
         private void SetMaxSteerAngle(float arg0)
@@ -108,7 +110,7 @@ namespace Assets.Scripts.SimuUI
             {
                 text_maxSteerAngle.text = string.Format(arg0.ToString());
             }
-            ObjTestCar.TestCar.WD.maxAngle = arg0;
+            //ObjTestCar.TestCar.WD.maxAngle = arg0;
         }
         private void ToogleSimuMessagePanel(bool arg0)
         {
@@ -116,10 +118,10 @@ namespace Assets.Scripts.SimuUI
         }
         private void ToggleSimuNDT(bool arg0)
         {
-            if (TestConfig.isEditMode) return;
-            if (lidarOrSimNdt == null)
-                lidarOrSimNdt = ObjTestCar.TestCar.GetComponent<LidarOrSimNdt>();
-            lidarOrSimNdt.SetSimNdt(arg0);
+            //if (TestConfig.isEditMode) return;
+            //if (lidarOrSimNdt == null)
+            //    lidarOrSimNdt = ObjTestCar.TestCar.GetComponent<LidarOrSimNdt>();
+            //lidarOrSimNdt.SetSimNdt(arg0);
         }
         WheelFrictionCurve forwardWFC;
         WheelFrictionCurve sideWFC;
@@ -129,13 +131,13 @@ namespace Assets.Scripts.SimuUI
             {
                 text_friction.text = string.Format(arg0.ToString());
             }
-            foreach (var item in ObjTestCar.TestCar.WD.m_Wheels)
-            {
-                forwardWFC = item.forwardFriction;
-                forwardWFC.stiffness = 2 * arg0;
-                sideWFC = item.sidewaysFriction;
-                sideWFC.stiffness = arg0;
-            }
+            //foreach (var item in ObjTestCar.TestCar.WD.m_Wheels)
+            //{
+            //    forwardWFC = item.forwardFriction;
+            //    forwardWFC.stiffness = 2 * arg0;
+            //    sideWFC = item.sidewaysFriction;
+            //    sideWFC.stiffness = arg0;
+            //}
         }
         private void SetMaxTorque(float arg0)
         {
@@ -143,7 +145,7 @@ namespace Assets.Scripts.SimuUI
             {
                 text_maxTorque.text = string.Format(arg0.ToString());
             }
-            ObjTestCar.TestCar.WD.maxTorque = arg0;
+            //ObjTestCar.TestCar.WD.maxTorque = arg0;
         }
         private void SetMaxCameraRange(float arg0)
         {
@@ -151,7 +153,7 @@ namespace Assets.Scripts.SimuUI
             {
                 text_maxCameraRange.text = string.Format(arg0.ToString());
             }
-            OverLookCamera.Instance.MaxCameraSize = arg0;
+            //OverLookCamera.Instance.MaxCameraSize = arg0;
         }
 
         private void SetMaxSpeed(float value)
@@ -160,7 +162,7 @@ namespace Assets.Scripts.SimuUI
             {
                 text_maxSpeed.text = value.ToString();
             }
-            ObjTestCar.TestCar.WD.maxSpeed = value / 3.6f;
+            //ObjTestCar.TestCar.WD.maxSpeed = value / 3.6f;
         }
         private Dictionary<int, Resolution> DicResolution = new Dictionary<int, Resolution>
         {

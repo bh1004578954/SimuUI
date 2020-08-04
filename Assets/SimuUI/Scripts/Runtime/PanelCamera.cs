@@ -22,31 +22,13 @@ namespace Assets.Scripts.SimuUI
         // Start is called before the first frame update
         void Start()
         {
-            btn_SwitchCamera?.onClick.AddListener(() => { SwitchCamera(); });
+            btn_SwitchCamera?.onClick.AddListener(() => { });
             btn_CameraPanelHide?.onClick.AddListener(() =>
             {
                 isActive = !isActive;
                 SetPanelActive(isActive);
             });
 
-        }
-
-        private bool isCarCamera = false;
-        public RenderTexture texture_RightDown;
-        void SwitchCamera()
-        {
-            MainUI.Instance.isCarCameraMain = isCarCamera;
-            isCarCamera = !isCarCamera;
-            if (isCarCamera)
-            {
-                CarCameraController.Instance.GetComponent<Camera>().targetTexture = null;
-                OverLookCamera.Instance.oLCamera.targetTexture = texture_RightDown;
-            }
-            else
-            {
-                CarCameraController.Instance.GetComponent<Camera>().targetTexture = texture_RightDown;
-                OverLookCamera.Instance.oLCamera.targetTexture = null;
-            }
         }
         public override void SetPanelActive(bool value)
         {

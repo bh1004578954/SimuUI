@@ -23,27 +23,27 @@ namespace Assets.Scripts.SimuUI
             SetPanelActive(false);
             button_Close?.onClick.AddListener(() => { SetPanelActive(false); });
         }
-        public void InitPanelVoyage()
-        {
-            for (int i = 0; i < panelVoyageConfigs.Count; i++)
-            {
-                Destroy(panelVoyageConfigs[i].gameObject);
-            }
-            panelVoyageConfigs.Clear();
-            foreach (VoyageConfig config in VoyageTestManager.Instance.VoyageConfigs)
-            {
-                CreateVoyageConfig(config);
-            }
-        }
+        //public void InitPanelVoyage()
+        //{
+        //    for (int i = 0; i < panelVoyageConfigs.Count; i++)
+        //    {
+        //        Destroy(panelVoyageConfigs[i].gameObject);
+        //    }
+        //    panelVoyageConfigs.Clear();
+        //    foreach (VoyageConfig config in VoyageTestManager.Instance.VoyageConfigs)
+        //    {
+        //        CreateVoyageConfig(config);
+        //    }
+        //}
 
-        public void CreateVoyageConfig(VoyageConfig voyageConfig)
-        {
-            PanelVoyageConfig panelVoyageConfig = Instantiate(PanelVoyageConfig, PanelConfigParent).GetComponent<PanelVoyageConfig>();
-            panelVoyageConfig.InitPanel(voyageConfig);
-            panelVoyageConfigs.Add(panelVoyageConfig);
-            panelVoyageConfig.transform.SetAsLastSibling();
-            AddTrans.SetAsLastSibling();
-        }
+        //public void CreateVoyageConfig(VoyageConfig voyageConfig)
+        //{
+        //    PanelVoyageConfig panelVoyageConfig = Instantiate(PanelVoyageConfig, PanelConfigParent).GetComponent<PanelVoyageConfig>();
+        //    panelVoyageConfig.InitPanel(voyageConfig);
+        //    panelVoyageConfigs.Add(panelVoyageConfig);
+        //    panelVoyageConfig.transform.SetAsLastSibling();
+        //    AddTrans.SetAsLastSibling();
+        //}
         public void SetStepIndicator(int step)
         {
             foreach (PanelVoyageConfig panel in panelVoyageConfigs)
